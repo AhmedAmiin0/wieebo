@@ -30,12 +30,12 @@ Route::middleware([
     PreventAccessFromCentralDomains::class,
 ])->group(function () {
     Route::controller(TaskController::class)->group(function () {
-        Route::get('/', 'index')->name('tasks.index');
-        Route::post('/',  'store')->name('tasks.store');
+        Route::get('/', 'index')->name('tasks.index')->middleware('auth');
+        Route::post('/',  'store')->name('tasks.store')->middleware('auth');
         Route::delete('/{task}',  'destroy')->name('tasks.destroy');
-        Route::post('/import',  'importFromXlsx')->name('tasks.import');
+        Route::post('/import',  'importFromXlsx')->name('tasks.import')->middleware('auth');
     })
-        ->middleware('auth');;
+        ;;
     Route::resource('users', UserController::class)
         ->names('users')
         ->except(['show'])

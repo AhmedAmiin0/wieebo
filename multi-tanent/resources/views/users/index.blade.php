@@ -66,7 +66,7 @@
                           href="{{ route('users.edit', $user->id) }}">
                           Edit
                         </a>
-                        <form action="{{ route('tasks.destroy', $user->id) }}" method="POST">
+                        <form action="{{ route('users.destroy', $user->id) }}" method="POST">
                           @csrf
                           @method('DELETE')
                           <button type="submit"

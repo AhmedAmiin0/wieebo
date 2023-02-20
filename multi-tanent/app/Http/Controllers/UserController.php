@@ -98,6 +98,7 @@ class UserController extends Controller
             if ($user->id == auth()->user()->id) {
                 auth()->logout();
             }
+            $user->delete();
             return redirect()->route('users.index')->with('success', 'User deleted successfully');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
