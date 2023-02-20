@@ -7,7 +7,7 @@ const initialState = {
 };
 
 export const recordsThunk = createAsyncThunk(
-  "counter/fetchRecords",
+  "users/fetchRecords",
   async () => await fetchUsers()
 );
 
