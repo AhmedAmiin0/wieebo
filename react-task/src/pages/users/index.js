@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from "react";
+import {  useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Table from "../../components/Table";
 import TRow from "../../components/TRow";
@@ -8,16 +8,14 @@ function ListUsers() {
   const dispatch = useDispatch();
   const users = useSelector((state) => state.users);
 
-  useCallback(() => {
+  useEffect(() => {
     if (users.status === "loading") return;
     dispatch(recordsThunk());
-  }, [])();
+  }, []);
 
   if (users.status === "loading")
     return (
-      <div className="flex justify-center items-center h-screen
-        text-white text-5xl
-      ">
+      <div className="flex items-center justify-center h-screen text-5xl text-white ">
         Loading...
       </div>
     );
@@ -40,7 +38,7 @@ function ListUsers() {
           />
         ))}
       </Table>
-      <div className="p-4 flex">
+      <div className="flex p-4">
         <button
           className="bg-[#c71585] p-2 rounded-md text-white hover:bg-[#c71585] hover:text-white w-full"
           onClick={() => {
